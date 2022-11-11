@@ -14,8 +14,6 @@ Used for `upgrades` (apt upgrade): `/lib/systemd/system/apt-daily-upgrade.timer`
 
 - gets overridden by `/etc/systemd/system/apt-daily-upgrade.timer.d/override.conf`
 
-You can also rename these override files by whatever you want till it finish by `.conf`
-
 The best way to modify these files is to use embeded edit systemctl way:
 
 ```bash
@@ -37,6 +35,9 @@ systemctl status apt-daily.timer
 systemctl status apt-daily-upgrade.timer
 ```
 
+> **Warning**
+> The `OnCalendar=` with empty value is mandatory to override properly the default value.
+
 This is my update approach on my server:
 
 - apt update -> 06:00 AM on Saturday
@@ -45,5 +46,4 @@ This is my update approach on my server:
 
 ## TODO
 
-Change udpdate to one time per week
-and send notif if problem
+Send notif if problem
