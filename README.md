@@ -47,3 +47,6 @@ This is my update approach on my server:
 ## TODO
 
 Send notif if problem
+install a mailX package
+Unattended-Upgrade::Mail "evancutaia21@gmail.com";
+Unattended-Upgrade::MailReport "only-on-error";
