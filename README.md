@@ -38,6 +38,8 @@ systemctl status apt-daily-upgrade.timer
 > **Warning**
 > The `OnCalendar=` with empty value is mandatory to override properly the default value.
 
+## My approach
+
 This is my update approach on my server:
 
 - apt update -> 06:00 AM on Saturday
