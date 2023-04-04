@@ -42,9 +42,11 @@ systemctl status apt-daily-upgrade.timer
 
 This is my update approach on my server:
 
-- apt update -> 06:00 AM on Saturday
-- apt upgrade -> 06:30 AM on Saturday
-- [docker image update](https://github.com/containrrr/watchtower) -> 07:00 AM on Saturday (see [docker compose template](https://github.com/moniika21/docker-compose-template/blob/main/watchtower/docker-compose.yaml) for watchtower)
+- apt update -> 06:00 AM on 27th of each month
+- apt upgrade -> 06:30 AM on 27th of each month
+
+If watchtower is installed:
+- [docker image update](https://github.com/containrrr/watchtower) -> 07:00 AM on 27th of each month (see [docker compose template](https://github.com/moniika21/docker-compose-template/blob/main/watchtower/docker-compose.yaml) for watchtower)
 
 ## TODO
 
