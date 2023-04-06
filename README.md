@@ -38,6 +38,12 @@ systemctl status apt-daily-upgrade.timer
 > **Warning**
 > The `OnCalendar=` with empty value is mandatory to override properly the default value.
 
+## Choose [what to update](https://wiki.debian.org/fr/unattended-upgrades)
+
+```bash
+sudo vim /etc/apt/apt.conf.d/50unattended-upgrades
+```
+
 ## My approach
 I may be a slightly diffrent time when this is executed because of [AccuracySec](https://man.archlinux.org/man/systemd.timer.5) to reduce power consumption.
 [RandomizedDelaySec](https://man.archlinux.org/man/systemd.timer.5) is rather settled to 0 in order to prevent too much randominess
