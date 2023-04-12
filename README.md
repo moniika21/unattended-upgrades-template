@@ -61,7 +61,7 @@ This is my update approach on my server:
 
 If watchtower is installed:
 
-- [docker image update](https://github.com/containrrr/watchtower) -> 06:45 AM on 27th of each month (see [docker compose template](https://github.com/moniika21/docker-compose-template/blob/main/watchtower/docker-compose.yaml) for watchtower)
+- [docker image update](https://github.com/containrrr/watchtower) -> 06:45 AM on the last saturday of each month (see [docker compose template](https://github.com/moniika21/docker-compose-template/blob/main/watchtower/docker-compose.yaml) for watchtower)
 
 ## TODO
 
