@@ -45,20 +45,23 @@ sudo vim /etc/apt/apt.conf.d/50unattended-upgrades
 ```
 
 ## My approach
+
 I may be a slightly diffrent time when this is executed because of [AccuracySec](https://man.archlinux.org/man/systemd.timer.5) to reduce power consumption.
 [RandomizedDelaySec](https://man.archlinux.org/man/systemd.timer.5) is rather settled to 0 in order to prevent too much randominess
-You can check timestamps with 
+You can check timestamps with
+
 ```bash
 systemd-analyze calendar "<expression>"
 ```
 
 This is my update approach on my server:
 
-- apt update -> 06:30 AM on the last saturday of each month
-- apt upgrade -> 07:00 AM on the last saturday of each month
+- apt update -> 06:15 AM on the last saturday of each month
+- apt upgrade -> 06:30 AM on the last saturday of each month
 
 If watchtower is installed:
-- [docker image update](https://github.com/containrrr/watchtower) -> 07:30 AM on 27th of each month (see [docker compose template](https://github.com/moniika21/docker-compose-template/blob/main/watchtower/docker-compose.yaml) for watchtower)
+
+- [docker image update](https://github.com/containrrr/watchtower) -> 06:45 AM on 27th of each month (see [docker compose template](https://github.com/moniika21/docker-compose-template/blob/main/watchtower/docker-compose.yaml) for watchtower)
 
 ## TODO
 
