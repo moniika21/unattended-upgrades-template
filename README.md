@@ -54,7 +54,7 @@ You can check timestamps with
 systemd-analyze calendar "<expression>"
 ```
 Example:
-Sat *-*~07/1 07:15:00 -> 07:30 AM on the last saturday of each month
+Sat *-*~07/1 07:15:00 -> 07:15 AM on the last saturday of each month
 
 
 This is my approach on my server:
