@@ -18,6 +18,9 @@ The best way to modify these files is to use embeded edit systemctl way:
 
 ```bash
 systemctl edit apt-daily.timer
+```
+
+```bash
 systemctl edit apt-daily-upgrade.timer
 ```
 
@@ -25,6 +28,9 @@ And to restart the desired service:
 
 ```bash
 systemctl restart apt-daily.timer
+```
+
+```bash
 systemctl restart apt-daily-upgrade.timer
 ```
 
@@ -32,6 +38,9 @@ Verify that it worked:
 
 ```bash
 systemctl status apt-daily.timer
+```
+
+```bash
 systemctl status apt-daily-upgrade.timer
 ```
 
