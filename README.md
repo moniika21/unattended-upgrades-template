@@ -54,18 +54,21 @@ You can check timestamps with
 systemd-analyze calendar "<expression>"
 ```
 Example:
+
 Sat *-*~07/1 07:15:00 -> 07:15 AM on the last saturday of each month
 
 
 This is my approach on my server:
-- backup creation -> 5:00 AM everyday
+- backup creation -> 6:00 AM everyday
 - backup migration -> 6:00 AM everyday
-- apt update -> 07:00 AM on the last saturday of each month
-- apt upgrade -> 07:15 AM on the last saturday of each month
-
-If watchtower is installed:
-
+  
+- If watchtower is installed:
 - [docker image update](https://github.com/containrrr/watchtower) -> 07:30 AM on the last saturday of each month (see [docker compose template](https://github.com/moniika21/docker-compose-template/blob/main/watchtower/docker-compose.yaml) for watchtower)
+  
+- apt update -> 07:15 AM on the last saturday of each month
+- apt upgrade -> 07:30 AM on the last saturday of each month
+
+
 
 ## TODO
 
