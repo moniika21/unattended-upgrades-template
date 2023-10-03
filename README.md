@@ -79,9 +79,9 @@ This is my approach on my server:
 
 
 
-## TODO
+## Send mail if problem
 
-Send notif if problem
-install a mailX package
-Unattended-Upgrade::Mail "";
+Unattended-Upgrade::Mail "personal-mail@gmail.com";
 Unattended-Upgrade::MailReport "only-on-error";
+
+https://www.it-connect.fr/configurer-postfix-pour-envoyer-des-mails-avec-gmail/
