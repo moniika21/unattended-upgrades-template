@@ -54,7 +54,7 @@ sudo vim /etc/apt/apt.conf.d/50unattended-upgrades
 ```
 ## Logs
 
-And there is always /var/log/dpkg.log, or the files in /var/log/unattended-upgrades/.
+And there is always `/var/log/dpkg.log`, or the files in `/var/log/unattended-upgrades/`.
 
 ## My approach
 
