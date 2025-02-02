@@ -7,34 +7,9 @@
 - Installer le paquet `unattended-upgrades`
   - `sudo apt install unattended-upgrades`
 
-## Configuration de auto-upgrades
+## Configuration de auto-upgrades## Installation de unattended-upgrades
 
-- Modifier le fichier de configuration des mises à jour automatiques
-  - `sudo nano /etc/apt/apt.conf.d/20auto-upgrades`
-- Copier coller ou remplir si déjà présent
-
-```bash
-APT::Periodic::Update-Package-Lists "1";  
-APT::Periodic::Unattended-Upgrade "1";  
-APT::Periodic::AutocleanInterval "7";
-```
-
-- Enregistrer et fermer le fichier
-
-## Configuration de unattended-upgrades
-
-<https://wiki.debian.org/fr/unattended-upgrades>
-
-- Modifier le fichier de configuration des sources de mises à jour
-  - `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
-- Si la distribution est Debian
-  - Mettre dans `Unattended-Upgrade::Allowed-Origins`
-
-```bash
-"origin=Debian,codename=${distro_codename},label=Debian";  
-"origin=Debian,codename=${distro_codename},label=Debian-Security";
-"origin=Debian,codename=${distro_codename}-security,label=Debian-Security";
-```
+[Configurer Postfix pour envoyer des mails avec Gmail](https://www.it-connect.fr/configurer-postfix-pour-envoyer-des-mails-avec-gmail/)￼
 
 - Si on est sur Debian trixie ou testing, alors mettre la ligne du backport de la version précédente de debian
 
