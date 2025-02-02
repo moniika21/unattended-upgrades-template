@@ -1,82 +1,94 @@
+# Mise à jour automatique des paquets apt
+
 ## Installation de unattended-upgrades
 
-https://wiki.debian.org/UnattendedUpgrades
+<https://wiki.debian.org/UnattendedUpgrades>
+
 - Installer le paquet `unattended-upgrades`
-    - `sudo apt install unattended-upgrades`
+  - `sudo apt install unattended-upgrades`
 
 ## Configuration de auto-upgrades
+
 - Modifier le fichier de configuration des mises à jour automatiques
-    - `sudo nano /etc/apt/apt.conf.d/20auto-upgrades`
+  - `sudo nano /etc/apt/apt.conf.d/20auto-upgrades`
 - Copier coller ou remplir si déjà présent
+
 ```bash
 APT::Periodic::Update-Package-Lists "1";  
 APT::Periodic::Unattended-Upgrade "1";  
 APT::Periodic::AutocleanInterval "7";
 ```
+
 - Enregistrer et fermer le fichier
 
 ## Configuration de unattended-upgrades
 
-https://wiki.debian.org/fr/unattended-upgrades
+<https://wiki.debian.org/fr/unattended-upgrades>
+
 - Modifier le fichier de configuration des sources de mises à jour
-    - `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
+  - `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
 - Si la distribution est Debian
-	- Mettre dans `Unattended-Upgrade::Allowed-Origins`
+  - Mettre dans `Unattended-Upgrade::Allowed-Origins`
+
 ```bash
 "origin=Debian,codename=${distro_codename},label=Debian";  
 "origin=Debian,codename=${distro_codename},label=Debian-Security";
 "origin=Debian,codename=${distro_codename}-security,label=Debian-Security";
 ```
+
 - Si on est sur Debian trixie ou testing, alors mettre la ligne du backport de la version précédente de debian
+
 ```bash
 "origin=Debian,codename=bookworm-backports,label=Debian-Backports";
 ```
+
 - Ajouter ou remplacer aux bons endroits
-		- `Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";`
-		- `Unattended-Upgrade::Remove-New-Unused-Dependencies "true";`
-		- `Unattended-Upgrade::Remove-Unused-Dependencies "true";`
+  - `Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";`
+  - `Unattended-Upgrade::Remove-New-Unused-Dependencies "true";`
+  - `Unattended-Upgrade::Remove-Unused-Dependencies "true";`
 - Décommenter les lignes qui ont été ajoutées si besoin
 - Enregistrer et fermer le fichier
 - Installer le paquet de vérification de la puissance électrique
-	- `sudo apt install powermgmt-base`
+  - `sudo apt install powermgmt-base`
 
 ## Modification des timers si nécessaire
 
 > Warning
 > The `OnCalendar=` with empty value is mandatory to override properly the default value.
+>
 ### Timer apt-daily.timer
 
 - Vérifier l'état du timer
-    - `sudo systemctl status apt-daily.timer`
+  - `sudo systemctl status apt-daily.timer`
 - Ouvrir le fichier du timer
-    - `sudo systemctl edit apt-daily.timer`
-- Redémarrer le timer 
-    - `sudo systemctl restart apt-daily.timer`  
+  - `sudo systemctl edit apt-daily.timer`
+- Redémarrer le timer
+  - `sudo systemctl restart apt-daily.timer`  
 
 ### Timer apt-daily-upgrade.timer
 
 - Vérifier l'état du timer
-    - `sudo systemctl status apt-daily-upgrade.timer`
-- Ouvrir le fichier du timer 
-    - `sudo systemctl edit apt-daily-upgrade.timer`
-- Redémarrer le timer 
-    - `sudo systemctl restart apt-daily-upgrade.timer` 
+  - `sudo systemctl status apt-daily-upgrade.timer`
+- Ouvrir le fichier du timer
+  - `sudo systemctl edit apt-daily-upgrade.timer`
+- Redémarrer le timer
+  - `sudo systemctl restart apt-daily-upgrade.timer`
 
 ## Vérification des mises à jour automatiques
 
 - Simuler une mise à jour sans exécuter de changements réels
-    - `sudo unattended-upgrade --dry-run`
+  - `sudo unattended-upgrade --dry-run`
 - Vérifier le statut des mises à jour automatiques
-    - `cat /var/log/unattended-upgrades/unattended-upgrades.log`
+  - `cat /var/log/unattended-upgrades/unattended-upgrades.log`
 
 ## Vérification des timers apt et unattended-upgrades
 
 - Vérifier l'état du timer apt-daily.timer
-    - `systemctl status apt-daily.timer`
+  - `systemctl status apt-daily.timer`
 - Vérifier l'état du timer apt-daily-upgrade.timer
-    - `systemctl status apt-daily-upgrade.timer`
+  - `systemctl status apt-daily-upgrade.timer`
 - Vérifier l'exécution des timers de manière générale
-    - `systemctl list-timers | grep apt`
+  - `systemctl list-timers | grep apt`
 
 ## Annexes
 
@@ -86,17 +98,17 @@ Parce que Debian utilise `systemd`, il dispose de timers définis pour l'utilisa
 
 - Utilisé pour les mises à jour (`apt update`) :  
     `/lib/systemd/system/apt-daily.timer`
-    - Peut être remplacé par :
+  - Peut être remplacé par :
         `/etc/systemd/system/apt-daily.timer.d/override.conf`
 
 - Utilisé pour les mises à niveau (`apt upgrade`) :  
     `/lib/systemd/system/apt-daily-upgrade.timer`
-    - Peut être remplacé par :  
+  - Peut être remplacé par :  
         `/etc/systemd/system/apt-daily-upgrade.timer.d/override.conf`
 
 - Logs disponibles :
-    - `/var/log/dpkg.log`
-    - `/var/log/unattended-upgrades/`
+  - `/var/log/dpkg.log`
+  - `/var/log/unattended-upgrades/`
 
 ### Mon approche
 
@@ -121,7 +133,7 @@ Sat *-*~07/1 07:15:00
 - Création de sauvegarde → 06:00 AM tous les jours
 - Migration des sauvegardes → 06:15 AM tous les jours
 - Mises à jour des images Docker (si Watchtower est installé) → 10:00 AM tous les jours
-    - Voir [docker-compose template](https://github.com/moniika21/docker-compose-template/blob/main/watchtower/docker-compose.yaml)
+  - Voir [docker-compose template](https://github.com/moniika21/docker-compose-template/blob/main/watchtower/docker-compose.yaml)
 - Mise à jour APT (`apt update`) → 07:15 AM tous les jours
 - Mise à niveau APT (`apt upgrade`) → 07:30 AM tous les jours
 
